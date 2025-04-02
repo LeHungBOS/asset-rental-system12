@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Thông tin thiết bị{% endblock %}
+{% block content %}
+<h2 class="text-lg font-bold mb-4">📦 Thiết bị</h2>
+<form method="post" enctype="multipart/form-data" class="space-y-2">
+  <input name="name" value="{{ asset.name if asset }}" placeholder="Tên" required class="input">
+  <input name="code" value="{{ asset.code if asset }}" placeholder="Mã" required class="input">
+  <input name="category" value="{{ asset.category if asset }}" placeholder="Danh mục" class="input">
+  <input name="quantity" type="number" value="{{ asset.quantity if asset }}" placeholder="Số lượng" required class="input">
+  <textarea name="description" placeholder="Mô tả" class="input">{{ asset.description if asset }}</textarea>
+  {% if asset.image_path %}
+    <img src="{{ asset.image_path }}" class="h-24 mb-2">
+  {% endif %}
+  <input type="file" name="image" class="input">
+  <button class="btn">💾 Lưu</button>
+</form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Quản lý thiết bị{% endblock %}
+{% block content %}
+<h2 class="text-lg font-bold mb-4">📦 Danh sách thiết bị</h2>
+<a href="/assets/add" class="btn">➕ Thêm</a>
+<a href="/assets/export" class="btn">📤 Export CSV</a>
+<table class="table-auto w-full mt-4">
+<tr><th>Tên</th><th>Mã</th><th>Danh mục</th><th>Số lượng</th><th>Ảnh</th><th></th></tr>
+{% for a in assets %}
+<tr class="border-t">
+  <td>{{ a.name }}</td><td>{{ a.code }}</td><td>{{ a.category }}</td><td>{{ a.quantity }}</td>
+  <td>{% if a.image_path %}<img src="{{ a.image_path }}" class="h-16">{% endif %}</td>
+  <td>
+    <a href="/assets/edit/{{ a.id }}" class="text-blue-600">✏️</a>
+    <a href="/assets/delete/{{ a.id }}" class="text-red-600 ml-2">🗑</a>
+  </td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
